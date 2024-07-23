@@ -1,0 +1,213 @@
+{% schema %}
+{
+  "name": "Customer Testimonials",
+  "settings": [],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Customer Testimonials"
+    }
+  ]
+}
+{% endschema %}
+
+<!-- Customer Testimonials Section -->
+<section class="customer-testimonials">
+  <h2><strong style="color: black;">Customer Testimonials</strong></h2>
+  <div class="testimonials-container">
+    <div class="testimonials-row">
+      <!-- First Testimonial -->
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <span>Arcile W.</span>
+        </div>
+        <div class="testimonial-content">
+          <div class="testimonial-rating">
+            {% for star in (1..5) %}
+              <span class="star">★</span>
+            {% endfor %}
+          </div>
+          <p>My first time to order fruits from this site and all my expectations were met. The fruits are fresh, sweet and delicious as I expected. Cravings satisfied, that's all I can say. Cheers!</p>
+          <div class="testimonial-author">
+            <span class="author-initials">AW</span>
+            <span class="author-name">Arcile W.</span>
+          </div>
+        </div>
+      </div>
+      <!-- Second Testimonial -->
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <span>Arcile W.</span>
+        </div>
+        <div class="testimonial-content">
+          <div class="testimonial-rating">
+            {% for star in (1..5) %}
+              <span class="star">★</span>
+            {% endfor %}
+          </div>
+          <p>My first time to order fruits from this site and all my expectations were met. The fruits are fresh, sweet and delicious as I expected. Cravings satisfied, that's all I can say. Cheers!</p>
+          <div class="testimonial-author">
+            <span class="author-initials">AW</span>
+            <span class="author-name">Arcile W.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonials-navigation">
+      <button id="prev-btn">Previous</button>
+      <button id="next-btn">Next</button>
+    </div>
+  </div>
+  <!-- Not Convinced Section -->
+  <div class="not-convinced">
+    <p>Not convinced?<br>Check what others have to say about us!</p>
+    <a href="/reviews" class="show-all-reviews">Show All Reviews</a>
+  </div>
+</section>
+
+<!-- Styles -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap');
+
+.customer-testimonials {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  font-family: 'Manrope', sans-serif;
+}
+.testimonials-container {
+  position: relative;
+}
+.testimonials-row {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+.testimonial, .not-convinced {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 269px;
+  height: 367.71px;
+  padding: 10px;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.testimonial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.testimonial-content {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+}
+.testimonial-rating {
+  font-size: 1.2em;
+  color: #ffcc00;
+}
+.star {
+  margin-right: 2px;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.author-initials {
+  width: 30px;
+  height: 30px;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.author-name {
+  font-weight: bold;
+}
+.not-convinced {
+  text-align: center;
+  padding: 20px;
+  flex-basis: 100%;
+}
+.show-all-reviews {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+.show-all-reviews:hover {
+  background-color: #555;
+}
+.testimonials-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+#prev-btn, #next-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+#prev-btn:hover, #next-btn:hover {
+  background-color: #555;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .testimonials-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .testimonial, .not-convinced {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+</style>
+
+<!-- Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const testimonials = document.querySelector('.testimonials-row');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  let scrollPosition = 0;
+
+  prevBtn.addEventListener('click', function() {
+    scrollPosition -= testimonials.clientWidth;
+    if (scrollPosition < 0) {
+      scrollPosition = testimonials.scrollWidth - testimonials.clientWidth;
+    }
+    testimonials.scrollTo({
+      left: scrollPosition,
+      behavior: 'smooth'
+    });
+  });
+
+  nextBtn.addEventListener('click', function() {
+    scrollPosition += testimonials.clientWidth;
+    if (scrollPosition >= testimonials.scrollWidth) {
+      scrollPosition = 0;
+    }
+    testimonials.scrollTo({
+      left: scrollPosition,
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
